@@ -38,10 +38,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -160,7 +157,7 @@ public class EsProductServiceImpl implements EsProductService {
         }
         nativeSearchQueryBuilder.withSort(SortBuilders.scoreSort().order(SortOrder.DESC));
         NativeSearchQuery searchQuery = nativeSearchQueryBuilder.build();
-        LOGGER.info("DSL:{}", searchQuery.getQuery().toString());
+        LOGGER.info("DSL:{}", Objects.requireNonNull(searchQuery.getQuery()).toString());
         SearchHits<EsProduct> searchHits = elasticsearchRestTemplate.search(searchQuery, EsProduct.class);
         if(searchHits.getTotalHits()<=0){
             return new PageImpl<>(null,pageable,0);
