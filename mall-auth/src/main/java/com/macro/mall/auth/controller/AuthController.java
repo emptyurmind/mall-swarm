@@ -38,7 +38,7 @@ public class AuthController {
                                                         @ApiParam("登录用户名") @RequestParam(required = false) String username,
                                                         @ApiParam("登录密码") @RequestParam(required = false) String password) throws HttpRequestMethodNotSupportedException {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("grant_type",grant_type);
+        parameters.put("grant_type",grant_type);      
         parameters.put("client_id",client_id);
         parameters.put("client_secret",client_secret);
         parameters.putIfAbsent("refresh_token",refresh_token);
